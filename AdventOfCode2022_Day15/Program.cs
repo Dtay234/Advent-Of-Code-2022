@@ -102,32 +102,34 @@
                 count++;
             }
 
-            List<int[]> noSensorSpots = new List<int[]>();
+            List<int> noSensorSpots = new List<int>();
 
+            
             foreach (Sensor sensor in sensors)
             {
-                foreach (int[] position in sensor.noBeaconLocations)
+                foreach (int position in sensor.noBeaconLocations)
                 {
                     if (!noSensorSpots.Contains(position) 
-                        && position != sensor.closestBeaconLocation
-                        && position != new int[] { sensor.xPos, sensor.yPos})
+                        && position != sensor.closestBeaconLocation[0]
+                        && position != sensor.xPos)
                     {
                         noSensorSpots.Add(position);
                     }
                 }
             }
+            
 
-            List <int[]> solutions = new List<int[]>();
+            List <int> solutions = new List<int>();
 
-            foreach (int[] position in noSensorSpots)
+            foreach (int position in noSensorSpots)
             {
-                if (position[1] == 10)
+                if (position == 10)
                 {
                     solutions.Add(position);
                 }
             }
 
-            Console.WriteLine(solutions.Count);
+            Console.WriteLine(noSensorSpots.Count);
         }
     }
 }
